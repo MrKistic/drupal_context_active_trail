@@ -57,6 +57,12 @@ class ContextActiveTrail extends MenuActiveTrail {
           ]);
           return FALSE;
         }
+
+        // Check that the instance is in the menu.
+        if (!empty($menu_name) && $instance->getMenuName() != $menu_name) {
+          break;
+        }
+
         return $instance;
       }
     }
