@@ -15,6 +15,14 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
  */
 class ContextActiveTrail extends MenuActiveTrail {
   /**
+   * Cache tag for things that are dependent on the breadcrumbs configuration.
+   *
+   * Whenever something might change which breadcrumb builder is responsible for
+   * a given breadcrumb, this tag needs to be invalidated.
+   */
+  const CACHE_TAG_BREADCRUMBS = "cache_tag_breadcrumbs";
+
+  /**
    * The context manager.
    *
    * @var \Drupal\Context\ContextManager
