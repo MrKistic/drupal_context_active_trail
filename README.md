@@ -50,13 +50,9 @@ Administration » Structure » Contexts.
 * Optionally enable setting breadcrumbs as well.
 
 
-Maintainers
+Acknowledgements
 -----------
 
-Current maintainers:
-
- * [Dave Vasilevsky (vasi)](https://www.drupal.org/user/390545)
-
-This project has been sponsored by:
-
- * [Evolving Web](https://evolvingweb.ca)
+* [Evolving Web](https://evolvingweb.ca) - Sponsorship for initial development.
+* [Dave Vasilevsky (vasi)](https://github.com/vasi) - Initial development.
+* [Jigar Mehta (jigarius)](https://jigarius.com/about) - Current maintainer.
