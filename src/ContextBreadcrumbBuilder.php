@@ -101,7 +101,8 @@ class ContextBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $breadcrumb->addCacheContexts(['url.path']);
 
     // Start with home page.
-    $breadcrumb->addLink(Link::createFromRoute(t('Home'), '<front>'));
+    $link = Link::createFromRoute($this->t('Home'), '<front>');
+    $breadcrumb->addLink($link);
 
     // Add links from menu.
     $link_ids = array_filter($this->activeTrail->getActiveTrailIds(NULL));
