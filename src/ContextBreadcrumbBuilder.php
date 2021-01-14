@@ -10,12 +10,14 @@ use Drupal\Core\Link;
 use Drupal\Core\Menu\MenuActiveTrailInterface;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Build breadcrumbs based on active trail from context.
  */
 class ContextBreadcrumbBuilder implements BreadcrumbBuilderInterface {
+  use StringTranslationTrait;
 
   /**
    * The context manager.
@@ -101,8 +103,9 @@ class ContextBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     $breadcrumb->addCacheContexts(['url.path']);
 
     // Start with home page.
-    $link = Link::createFromRoute($this->t('Home'), '<front>');
-    $breadcrumb->addLink($link);
+    $breadcrumb->addLink(
+      Link::createFromRoute($this->t('Home'), '<front>')
+    );
 
     // Add links from menu.
     $link_ids = array_filter($this->activeTrail->getActiveTrailIds(NULL));
