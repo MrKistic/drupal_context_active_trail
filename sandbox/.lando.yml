@@ -1,0 +1,33 @@
+name: context-active-trail
+recipe: drupal9
+config:
+  via: nginx
+  webroot: web
+  php: '8.0'
+services:
+  appserver:
+    environment:
+      DRUSH_OPTIONS_URI: context-active-trail.lndo.site
+      TERM: xterm-256color
+tooling:
+  prepare:
+    service: appserver
+    dir: /app
+    cmd:
+      - echo "Temporarily hiding .lando.yml in the ~ directory."
+      - mv /app/.lando.yml ~/.lando.yml
+      - if [ ! -f composer.json ]; then echo "Creating a new Drupal project..." && sleep 3; fi
+      - if [ ! -f compose.json ]; then composer create-project drupal/recommended-project .; fi
+      - mv ~/.lando.yml /app/.lando.yml
+      - composer require drush/drush:^10 drupal/context_active_trail:2.x-dev drupal/context:4.x-dev drupal/admin_toolbar
+      - echo "Installing code-sniffer..." && sleep 3
+      - composer require --dev drupal/coder:^8 dealerdirect/phpcodesniffer-composer-installer
+      - echo "Installing Drupal..." && sleep 3
+      - drush site-install -y standard --account-name=admin --account-pass=password --db-url=mysql://drupal9:drupal9@database:3306/drupal9
+      - drush en -y context_active_trail context_ui admin_toolbar_tools
+      - echo "Drupal site is ready! Generating a one-time login..."
+      - drush uli
+  phpcs:
+    service: appserver
+    dir: /app
+    cmd: phpcs --standard=DrupalPractice --extensions=php,module,install,yml web/modules/contrib/context_active_trail
