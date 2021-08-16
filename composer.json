@@ -14,7 +14,7 @@
     ],
     "require": {
         "drupal/core": "^8.8 || ^9",
-        "drupal/context": "4.0-beta5"
+        "drupal/context": "^4.1"
     },
     "support": {
         "issues": "https://www.drupal.org/project/issues/context_active_trail",
