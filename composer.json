@@ -10,11 +10,16 @@
             "name": "Jigar Mehta (jigarius)",
             "homepage": "https://jigarius.com/",
             "role": "Maintainer"
+        },
+        {
+            "name": "Gaurav Manerkar (gauravmanerkar)",
+            "homepage": "https://github.com/gauravmanerkar",
+            "role": "Maintainer"
         }
     ],
     "require": {
-        "drupal/core": "^8.8 || ^9",
-        "drupal/context": "^4.1"
+        "drupal/context": "^5.0",
+        "drupal/core": "^8.8 || ^9 || ^10"
     },
     "support": {
         "issues": "https://www.drupal.org/project/issues/context_active_trail",

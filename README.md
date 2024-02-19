@@ -68,3 +68,4 @@ Run `lando help` for a list of Lando commands.
 * [Evolving Web](https://evolvingweb.ca) - Sponsorship for initial development.
 * [Dave Vasilevsky (vasi)](https://github.com/vasi) - Initial development.
 * [Jigar Mehta (jigarius)](https://jigarius.com/about) - Current maintainer.
+* [Gaurav Manerkar (gauravmanerkar)](https://github.com/gauravmanerkar) - Current maintainer.
