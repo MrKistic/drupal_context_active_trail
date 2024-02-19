@@ -3,9 +3,9 @@
 namespace Drupal\context_active_trail\Plugin\ContextReaction;
 
 use Drupal\context\ContextInterface;
+use Drupal\context\ContextReactionPluginBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\context\ContextReactionPluginBase;
 use Drupal\Core\Menu\MenuParentFormSelectorInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -125,7 +125,7 @@ class ActiveTrail extends ContextReactionPluginBase implements ContainerFactoryP
       return NULL;
     }
 
-    list(, $link_id) = explode(':', $this->configuration['trail'], 2);
+    [, $link_id] = explode(':', $this->configuration['trail'], 2);
     return $link_id;
   }
 

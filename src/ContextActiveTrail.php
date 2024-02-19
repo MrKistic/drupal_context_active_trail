@@ -2,13 +2,13 @@
 
 namespace Drupal\context_active_trail;
 
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\context\ContextManager;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Menu\MenuActiveTrail;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 
 /**
  * Allow the active trail to be set manually.

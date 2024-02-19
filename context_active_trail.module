@@ -6,10 +6,10 @@
  */
 
 use Drupal\context\ContextInterface;
+use Drupal\context_active_trail\ContextActiveTrail;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\context_active_trail\ContextActiveTrail;
 
 /**
  * Implements hook_context_update().
