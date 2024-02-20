@@ -1,0 +1,12 @@
+reaction.plugin.active_trail:
+  type: reaction.plugin
+  mapping:
+    trail:
+      type: string
+      label: 'Trail'
+    breadcrumbs:
+      type: boolean
+      label: 'Override breadcrumbs'
+    breadcrumb_title:
+      type: boolean
+      label: 'Show current page in breadcrumb'
