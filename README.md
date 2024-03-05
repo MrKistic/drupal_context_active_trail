@@ -46,9 +46,9 @@ Administration » Structure » Contexts.
 
 ## Acknowledgements
 
-// cSpell:disable
+<!-- cspell:disable -->
 * [Evolving Web](https://evolvingweb.ca) - Sponsorship for initial development.
 * [Dave Vasilevsky (vasi)](https://github.com/vasi) - Initial development.
 * [Jigar Mehta (jigarius)](https://jigarius.com/about) - Current maintainer.
 * [Gaurav Manerkar (gaurav_manerkar)](https://github.com/gauravmanerkar) - Current maintainer.
-// cSpell:enable
+<!-- cspell:enable -->
