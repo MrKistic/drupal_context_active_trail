@@ -44,28 +44,11 @@ Administration » Structure » Contexts.
 * Choose a menu item to set the active trail of matching requests,.
 * Optionally enable setting breadcrumbs as well.
 
-
-## Development
-
-To ease dev env setup, a Lando file has been included with the module. Here's how
-you can use it to participate in the development of this module.
-
-* Clone the [module's code repository](https://git.drupalcode.org/project/context_active_trail).
-* `cd` into the `sandbox` directory.
-* Run `lando start` (Lando must be installed).
-* Run `lando prepare` to prepare a sandbox Drupal site.
-
-You can now work on the module in the following directory:
-
-    sandbox/web/modules/contrib/context_active_trail
-
-See [Lando documentation](https://docs.lando.dev/) for more info on Lando.
-Run `lando help` for a list of Lando commands.
-
-
 ## Acknowledgements
 
+// cSpell:disable
 * [Evolving Web](https://evolvingweb.ca) - Sponsorship for initial development.
 * [Dave Vasilevsky (vasi)](https://github.com/vasi) - Initial development.
 * [Jigar Mehta (jigarius)](https://jigarius.com/about) - Current maintainer.
-* [Gaurav Manerkar (gauravmanerkar)](https://github.com/gauravmanerkar) - Current maintainer.
+* [Gaurav Manerkar (gaurav_manerkar)](https://github.com/gauravmanerkar) - Current maintainer.
+// cSpell:enable
