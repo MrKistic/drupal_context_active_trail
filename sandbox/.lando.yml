@@ -41,7 +41,7 @@ tooling:
     service: appserver
     cmd:
       - /app/vendor/bin/drush --root=/app/web site:install --account-mail=noreply@example.com --account-name=admin --account-pass=admin --db-url=mysql://drupal10:drupal10@database/drupal10 -y --verbose
-      - /app/vendor/bin/drush en -y context_active_trail admin_toolbar_tools
+      - /app/vendor/bin/drush en -y context_active_trail admin_toolbar_tools context_ui
   # Provide Drush tooling to automatically know the Drupal root.
   drush:
     service: appserver
