@@ -54,10 +54,9 @@ Here's how you can use it to participate in the development of this module.
 * `cd` into the `sandbox` directory.
 * Run `lando start` (Lando must be installed).
 * Run `lando install` to prepare a sandbox Drupal site.
-* Open `http://context_active_trail.lndo.site/` in browser.
+* Open `http://context_active_trail.lndo.site` in browser.
 
-Additional development commands:
-These commands are to be executed from `./context_active_trail/sandbox` dir.
+Additional development commands which should be executed from `sandbox` directory.
 * Run `lando drush uli -l http://context_active_trail.lndo.site/` to generate
 site login link.
 * Run `lando phpcs` to use codesniffer.
@@ -65,12 +64,15 @@ site login link.
 * Run `lando phpstan` to use PHPStan.
 * Run `lando phpunit` to execute tests.
 
-The cloned module repo is mounted into the drupal codebase.
+The cloned module repo is mounted into the Drupal codebase.
 You can now work on the module in the following directory:
-    `./context_active_trail`
-The code changes will get auto applied on lando app.
+
+    ./context_active_trail
+
+Your code changes will get automatically copied to lando app.
 
 See [Lando documentation](https://docs.lando.dev/) for more info on Lando.
+
 Run `lando help` for a list of Lando commands.
 
 ## Acknowledgements
