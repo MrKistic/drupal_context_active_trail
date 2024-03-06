@@ -17,7 +17,9 @@ class ContextActiveTrailServiceProvider extends ServiceProviderBase {
   public function alter(ContainerBuilder $container) {
     $definition = $container->getDefinition('menu.active_trail');
     $definition->setClass('Drupal\context_active_trail\ContextActiveTrail');
-    $definition->addArgument(new Reference('context.manager'));
+    $definition
+      ->addArgument(new Reference('context.manager'))
+      ->addArgument(new Reference('logger.factory'));
   }
 
 }

@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\context\ContextManager;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Lock\LockBackendInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Menu\MenuActiveTrail;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -30,6 +31,13 @@ class ContextActiveTrail extends MenuActiveTrail {
   protected $contextManager;
 
   /**
+   * The logger service.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
+  /**
    * Constructor.
    *
    * @param \Drupal\Core\Menu\MenuLinkManagerInterface $menu_link_manager
@@ -42,10 +50,20 @@ class ContextActiveTrail extends MenuActiveTrail {
    *   The lock backend.
    * @param \Drupal\Context\ContextManager $context_manager
    *   The context manager.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
+   *   The logger service.
    */
-  public function __construct(MenuLinkManagerInterface $menu_link_manager, RouteMatchInterface $route_match, CacheBackendInterface $cache, LockBackendInterface $lock, ContextManager $context_manager) {
+  public function __construct(
+    MenuLinkManagerInterface $menu_link_manager,
+    RouteMatchInterface $route_match,
+    CacheBackendInterface $cache,
+    LockBackendInterface $lock,
+    ContextManager $context_manager,
+    LoggerChannelFactoryInterface $logger_factory
+  ) {
     parent::__construct($menu_link_manager, $route_match, $cache, $lock);
     $this->contextManager = $context_manager;
+    $this->logger = $logger_factory->get('context_active_trail');
     $this->tags[] = 'context_active_trail';
   }
 
@@ -60,7 +78,7 @@ class ContextActiveTrail extends MenuActiveTrail {
           $instance = $this->menuLinkManager->getInstance(['id' => $link_id]);
         }
         catch (PluginNotFoundException $e) {
-          \Drupal::logger('context_active_trail')->error('Could not find the configured menu link to set active: @error', [
+          $this->logger->error('Could not find the configured menu link to set active: @error', [
             '@error' => $e->getMessage(),
           ]);
           return FALSE;
