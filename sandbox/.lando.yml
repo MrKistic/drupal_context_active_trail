@@ -1,0 +1,63 @@
+name: context_active_trail
+recipe: drupal10
+config:
+  php: '8.2'
+  via: apache:2.4
+  webroot: web
+  database: mariadb:10.4
+  xdebug: false
+services:
+  database:
+    type: mariadb:10.4
+    portforward: true
+    creds:
+      user: drupal10
+      password: drupal10
+      database: drupal10
+  appserver:
+    overrides:
+      environment:
+        SIMPLETEST_DB: 'mysql://drupal10:drupal10@database/drupal10'
+        SIMPLETEST_BASE_URL: 'http://appserver'
+      volumes:
+        # Don't share our host working directory as /app. We want /app empty for composer.
+        - /app
+        # Instead share our host working directory as a standalone package.
+        - ../:/usr/local/context_active_trail
+    build:
+      # Create a new Drupal project and use the module as a non-packagist repository.
+      - composer create-project --dev drupal/recommended-project:10.2.x /app
+      - composer config extra.enable-patching true
+      - composer config extra.composer-exit-on-patch-failure true
+      - composer config allow-plugins.cweagans/composer-patches true
+      - composer require cweagans/composer-patches
+      - composer config minimum-stability dev
+      - composer config allow-plugins.phpstan/extension-installer true
+      - composer require --dev drupal/core-dev:^10.2 drush/drush phpstan/extension-installer phpspec/prophecy-phpunit:* mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules
+      - composer config repositories.localdev path /usr/local/context_active_trail && composer require drupal/context_active_trail && composer require drupal/admin_toolbar
+tooling:
+  # Provide a command to install Drupal.
+  install:
+    service: appserver
+    cmd:
+      - /app/vendor/bin/drush --root=/app/web site:install --account-mail=noreply@example.com --account-name=admin --account-pass=admin --db-url=mysql://drupal10:drupal10@database/drupal10 -y --verbose
+      - /app/vendor/bin/drush en -y context_active_trail admin_toolbar_tools
+  # Provide Drush tooling to automatically know the Drupal root.
+  drush:
+    service: appserver
+    cmd: /app/vendor/bin/drush --root=/app/web
+  phpcs:
+    service: appserver
+    cmd: /app/vendor/bin/phpcs -s --colors --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml web/modules/contrib/context_active_trail
+  # Provide PHPCBF tooling to fix coding standards.
+  phpcbf:
+    service: appserver
+    cmd: /app/vendor/bin/phpcbf -s --colors --standard=Drupal,DrupalPractice --extensions=php,module,inc,install,test,profile,theme,css,info,txt,md,yml web/modules/contrib/context_active_trail
+  # Provide phpstan tooling to check for code quality and deprecated code.
+  phpstan:
+    service: appserver
+    cmd: /app/vendor/bin/phpstan analyse web/modules/contrib/context_active_trail
+    # Provide phpunit tooling to run unit tests.
+  phpunit:
+    service: appserver
+    cmd: /app/vendor/bin/phpunit --configuration /app/web/core/phpunit.xml.dist --bootstrap /app/web/core/tests/bootstrap.php /app/web/modules/contrib/context_active_trail
