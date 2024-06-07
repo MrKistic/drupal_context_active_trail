@@ -59,7 +59,7 @@ class ContextActiveTrail extends MenuActiveTrail {
     CacheBackendInterface $cache,
     LockBackendInterface $lock,
     ContextManager $context_manager,
-    LoggerChannelFactoryInterface $logger_factory
+    LoggerChannelFactoryInterface $logger_factory,
   ) {
     parent::__construct($menu_link_manager, $route_match, $cache, $lock);
     $this->contextManager = $context_manager;
