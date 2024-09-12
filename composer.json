@@ -12,14 +12,14 @@
             "role": "Maintainer"
         },
         {
-            "name": "Gaurav Manerkar (gauravmanerkar)",
+            "name": "Gaurav Manerkar (gaurav_manerkar)",
             "homepage": "https://github.com/gauravmanerkar",
             "role": "Maintainer"
         }
     ],
     "require": {
         "drupal/context": "^5.0",
-        "drupal/core": "^8.8 || ^9 || ^10"
+        "drupal/core": "^9.3 || ^10 || ^11"
     },
     "support": {
         "issues": "https://www.drupal.org/project/issues/context_active_trail",
