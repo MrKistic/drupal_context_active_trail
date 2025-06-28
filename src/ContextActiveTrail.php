@@ -9,6 +9,7 @@ use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Menu\MenuActiveTrail;
 use Drupal\Core\Menu\MenuLinkManagerInterface;
+use Drupal\Core\Path\PathMatcherInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -48,6 +49,8 @@ class ContextActiveTrail extends MenuActiveTrail {
    *   The cache backend.
    * @param \Drupal\Core\Lock\LockBackendInterface $lock
    *   The lock backend.
+   * @param \Drupal\Core\Path\PathMatcherInterface $pathMatcher
+   *    The path.matcher service.
    * @param \Drupal\Context\ContextManager $context_manager
    *   The context manager.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger_factory
@@ -58,10 +61,11 @@ class ContextActiveTrail extends MenuActiveTrail {
     RouteMatchInterface $route_match,
     CacheBackendInterface $cache,
     LockBackendInterface $lock,
+    PathMatcherInterface $pathMatcher,
     ContextManager $context_manager,
-    LoggerChannelFactoryInterface $logger_factory,
+    LoggerChannelFactoryInterface $logger_factory
   ) {
-    parent::__construct($menu_link_manager, $route_match, $cache, $lock);
+    parent::__construct($menu_link_manager, $route_match, $cache, $lock, $pathMatcher);
     $this->contextManager = $context_manager;
     $this->logger = $logger_factory->get('context_active_trail');
     $this->tags[] = 'context_active_trail';
