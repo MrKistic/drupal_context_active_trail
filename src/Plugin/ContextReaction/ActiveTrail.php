@@ -72,7 +72,7 @@ class ActiveTrail extends ContextReactionPluginBase implements ContainerFactoryP
   /**
    * {@inheritdoc}
    */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state, ContextInterface $context = NULL) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state, ?ContextInterface $context = NULL) {
     $trail = $this->configuration['trail'];
     $form['trail'] = $this->menuLinkSelector->parentSelectElement($trail);
     $form['breadcrumbs'] = [
